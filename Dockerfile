@@ -7,7 +7,11 @@ WORKDIR /app
 # Copy the current directory contents into the container at /app
 COPY . /app
 
-RUN apt install wget
+RUN apt-get update && apt-get install -y \
+	wget \
+	git \
+	nano
+
 RUN cd /app
 # RUN wget https://repo.continuum.io/archive/Anaconda3-5.3.0-Linux-x86_64.sh
 
