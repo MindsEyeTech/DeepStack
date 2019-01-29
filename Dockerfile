@@ -10,11 +10,11 @@ COPY . /app
 # Install any needed packages specified in requirements.txt
 RUN pip install --trusted-host pypi.python.org -r requirements.txt
 
-RUN ./app/Anaconda3-5.2.0-Linux-x86_64.sh
+# RUN ./app/Anaconda3-5.2.0-Linux-x86_64.sh
 
-RUN conda install -c conda-forge jupyterhub
-RUN conda install jupyterlab
-RUN conda install notebook
+# RUN conda install -c conda-forge jupyterhub
+# RUN conda install jupyterlab
+# RUN conda install notebook
 
 RUN conda env create -f dl_env_linux_gpu.yml -n dl
 # RUN conda create -n dl python=3.6
