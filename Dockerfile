@@ -14,14 +14,22 @@ RUN conda create -n dl python=3.6
 RUN echo "source activate dl" > ~/.bashrc
 ENV PATH /opt/conda/envs/env/bin:$PATH
 
+RUN conda install -c conda-forge jupyterhub
+RUN conda install jupyterlab
+RUN conda install notebook
+
 
 # Make port 80 available to the world outside this container
+#jupyterhub
 EXPOSE 8000
-EXPOSE 80
-EXPOSE 8080
+
+# app.py example
+#EXPOSE 80
 
 # Define environment variable
-ENV NAME World
+ENV NAME DEV
 
 # Run app.py when the container launches
-CMD ["python", "app.py"]
+# CMD ["python", "app.py"]
+
+CMD ["jupyterhub"]
