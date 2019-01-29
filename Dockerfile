@@ -7,9 +7,13 @@ WORKDIR /app
 # Copy the current directory contents into the container at /app
 COPY . /app
 
+RUN apt install wget
+RUN wget https://repo.continuum.io/archive/Anaconda3-5.3.0-Linux-x86_64.sh /app/
+chmod -x Anaconda3-5.3.0-Linux-x86_64.sh
 # COPY ./Anaconda3-5.2.0-Linux-x86_64.sh /app/
+RUN ./app/Anaconda3-5.3.0-Linux-x86_64.sh
 
-# RUN ./app/Anaconda3-5.2.0-Linux-x86_64.sh
+#RUN ./app/Anaconda3-5.2.0-Linux-x86_64.sh
 
 # Install any needed packages specified in requirements.txt
 RUN pip install --trusted-host pypi.python.org -r requirements.txt
@@ -17,20 +21,19 @@ RUN pip install --trusted-host pypi.python.org -r requirements.txt
 # RUN ./app/Anaconda3-5.2.0-Linux-x86_64.sh
 
 # RUN conda install -c conda-forge jupyterhub
-# RUN conda install jupyterlab
-# RUN conda install notebook
+RUN conda install jupyterlab
+RUN conda install notebook
 
-# RUN conda env create -f dl_env_linux_gpu.yml -n dl
+RUN conda env create -f dl_env_linux_gpu.yml -n dl
 # RUN conda create -n dl python=3.6
-# RUN echo "source activate dl" > ~/.bashrc
-
+RUN echo "source activate dl" > ~/.bashrc
 ENV PATH /opt/conda/envs/env/bin:$PATH
 
 
 
 # Make port 80 available to the world outside this container
 #jupyterhub
-EXPOSE 8000
+EXPOSE 8888
 
 # app.py example
 #EXPOSE 80
