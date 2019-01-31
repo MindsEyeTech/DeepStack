@@ -1,1 +1,1 @@
-sudo docker build -t dockerstack .  # Create image using this directory's Dockerfile
+sudo docker build -t deepstack .  # Create image using this directory's Dockerfile
